@@ -7,9 +7,18 @@ function App() {
   const [movies, setMovies] = useState([]);
 
   const onSubmit = (values) => {
-    // console.log(`${JSON.stringify(values)}`);
-    movies.push(values);
+    setMovies(movies.concat(values));
     console.log(movies);
+  }
+
+  const movieTimeline = (movies) => {
+    return(
+      movies.map((movie, index) => {
+        return(
+          <MovieCard movieData={movie}/>
+        )
+      })
+    );
   }
   
   return (
@@ -17,7 +26,7 @@ function App() {
       <div className="formDiv">
         <Form 
           onSubmit={onSubmit}
-          render={({ handleSubmit, form, values }) => (
+          render={({ handleSubmit}) => (
             <form onSubmit={handleSubmit}>
             <h2>Test Form</h2>
             <div>
@@ -49,11 +58,7 @@ function App() {
         />
       </div>
       <div className="dataDiv">
-        {movies.map((movie, index) => {
-          return(
-            <MovieCard movieData={movie}/>
-          )
-        })}
+          {movies.length > 0 ? movieTimeline(movies) : <h1>Add some movies!</h1>}
       </div>
     </div>
   );

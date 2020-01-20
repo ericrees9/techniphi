@@ -5,7 +5,7 @@ function MovieCard (props) {
     console.log(props);
     return(
         <div className="cardBox">
-            <h2>Test</h2>
+            <h2>{props.movieData.movieTitle}</h2>
         </div>
     );
 }
