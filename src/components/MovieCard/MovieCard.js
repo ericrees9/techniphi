@@ -1,10 +1,11 @@
 import React from 'react';
 import '../MovieCard/MovieCard.css';
 
-function MovieCard () {
+function MovieCard (props) {
+    console.log(props);
     return(
         <div className="cardBox">
-            <h2>This will be the movie card.</h2>
+            <h2>Test</h2>
         </div>
     );
 }
