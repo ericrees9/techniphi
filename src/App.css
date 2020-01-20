@@ -1,7 +1,10 @@
 .App {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
 }
 
 .formDiv {
@@ -9,15 +12,18 @@
   height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: blanchedalmond;
   padding: 1em;
 }
 
 .dataDiv {
   width: 60vw;
-  height: 100vh;
+  height: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
   background-color: whitesmoke;
   padding: 2em;
 }

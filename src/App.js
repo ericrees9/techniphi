@@ -1,24 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import { Form, Field } from 'react-final-form'
-import MovieCard from './components/MovieCard/MovieCard';
+import { Button, Typography } from '@material-ui/core';
+import MovieTimeline from './components/MovieTimeline/MovieTimeline';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("useEffect is updating.")
+  }, [setMovies]);
 
   const onSubmit = (values) => {
     setMovies(movies.concat(values));
     console.log(movies);
   }
 
-  const movieTimeline = (movies) => {
-    return(
-      movies.map((movie, index) => {
-        return(
-          <MovieCard movieData={movie}/>
-        )
-      })
-    );
+  // const movieTimeline = () => {
+  //   console.log("this is running.")
+  //   return(
+  //     movies.map((movie, index) => {
+  //       return(
+  //         <MovieCard movieData={movie} id={index} deleteMovie={deleteMovie}/>
+  //       )
+  //     })
+  //   );
+  // }
+
+  const deleteMovie = (id) => {
+    let minus = movies.splice(id, 1)
+    setMovies(movies);
+    setCount(count + 1);
+    console.log(movies);
   }
   
   return (
@@ -26,9 +40,9 @@ function App() {
       <div className="formDiv">
         <Form 
           onSubmit={onSubmit}
-          render={({ handleSubmit}) => (
+          render={({handleSubmit}) => (
             <form onSubmit={handleSubmit}>
-            <h2>Test Form</h2>
+            <Typography variant="h3">Movie Locker</Typography>
             <div>
               <label>Movie Title: </label>
               <Field name="movieTitle" component="input" placeholder="Movie Title" />
@@ -48,17 +62,18 @@ function App() {
               </Field>
             </div>
 
-            <button 
+            <Button 
+              variant="contained"
               type="submit"
             >
               Submit
-            </button>
+            </Button>
             </form>
           )}
         />
       </div>
       <div className="dataDiv">
-          {movies.length > 0 ? movieTimeline(movies) : <h1>Add some movies!</h1>}
+          {movies.length > 0 ? <MovieTimeline movieData={movies} deleteMovie={deleteMovie}/> : <Typography variant="h3">Add some movies!</Typography>}
       </div>
     </div>
   );

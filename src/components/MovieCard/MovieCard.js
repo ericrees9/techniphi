@@ -1,11 +1,13 @@
 import React from 'react';
 import '../MovieCard/MovieCard.css';
+import { Button, Typography } from '@material-ui/core';
 
 function MovieCard (props) {
-    console.log(props);
+    // console.log(props)
     return(
         <div className="cardBox">
-            <h2>{props.movieData.movieTitle}</h2>
+            <Typography variant="h5">{props.movieData.movieTitle}</Typography>
+            <Button variant="contained" color="secondary" onClick={() => props.deleteMovie(props.id)}>Remove movie</Button>
         </div>
     );
 }

@@ -1,5 +1,7 @@
 .cardBox {
     border: 1px solid red;
-    width: 35vw;
-    height: 25vh;
+    width: 28vw;
+    height: 20vh;
+    margin: 1em;
+    padding: 1em;
 }
