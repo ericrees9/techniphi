@@ -11,14 +11,14 @@ function App() {
   const hasMovies = movies.length > 0;
 
   const onSubmit = (values) => {
-    let objID = {id: `${hasMovies ? movies.length + 1 : movies.length}`};
+    let objID = {uuid: `${Math.floor(Math.random()*100)}`};
     let newObj = {...values, ...objID};
     setMovies(movies.concat(newObj));
     console.log(movies);
   }
 
-  const deleteMovie = (id) => {
-    let newMoviesArray = movies.filter(movie => movie.id !== id);
+  const deleteMovie = (uuid) => {
+    let newMoviesArray = movies.filter(movie => movie.uuid !== uuid);
     setMovies(newMoviesArray);
   };
   

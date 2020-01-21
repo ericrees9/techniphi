@@ -45,7 +45,7 @@ const MovieCard = (props) => {
                         <Button onClick={handleClose} color="default">
                             No
                         </Button>
-                        <Button onClick={handleClose} onClick={() => props.deleteMovie(props.movieData.id)} color="secondary" autoFocus>
+                        <Button onClick={handleClose} onClick={() => props.deleteMovie(props.movieData.uuid)} color="secondary" autoFocus>
                             Yes
                         </Button>
                     </DialogActions>
