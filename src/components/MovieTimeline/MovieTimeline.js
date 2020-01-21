@@ -6,7 +6,7 @@ function MovieTimeline (props) {
     return(
       props.movieData.map((movie, index) => {
         return(
-          <MovieCard movieData={movie} id={index} deleteMovie={props.deleteMovie}/>
+          <MovieCard movieData={movie} index={index} deleteMovie={props.deleteMovie}/>
         )
       })
     );

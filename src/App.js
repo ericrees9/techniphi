@@ -1,39 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Form, Field } from 'react-final-form'
 import { Button, Typography } from '@material-ui/core';
-import MovieTimeline from './components/MovieTimeline/MovieTimeline';
+import MovieCard from './components/MovieCard/MovieCard';
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log("useEffect is updating.")
-  }, [setMovies]);
 
   const onSubmit = (values) => {
     setMovies(movies.concat(values));
-    console.log(movies);
   }
 
-  // const movieTimeline = () => {
-  //   console.log("this is running.")
-  //   return(
-  //     movies.map((movie, index) => {
-  //       return(
-  //         <MovieCard movieData={movie} id={index} deleteMovie={deleteMovie}/>
-  //       )
-  //     })
-  //   );
-  // }
+  const deleteMovie = (title) => {
+    const newMoviesArray = movies.filter(movie => movie.movieTitle !== title);
+    setMovies(newMoviesArray);
+  };
 
-  const deleteMovie = (id) => {
-    let minus = movies.splice(id, 1)
-    setMovies(movies);
-    setCount(count + 1);
-    console.log(movies);
-  }
+  const hasMovies = movies.length > 0;
   
   return (
     <div className="App">
@@ -73,7 +56,12 @@ function App() {
         />
       </div>
       <div className="dataDiv">
-          {movies.length > 0 ? <MovieTimeline movieData={movies} deleteMovie={deleteMovie}/> : <Typography variant="h3">Add some movies!</Typography>}
+        {hasMovies && movies.map((movie, index) =>
+          <MovieCard movieData={movie} index={index} deleteMovie={deleteMovie}/>
+        )}
+        {!hasMovies &&
+          <Typography variant="h3">Add some movies!</Typography>
+        }
       </div>
     </div>
   );

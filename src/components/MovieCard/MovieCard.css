@@ -1,7 +1,16 @@
 .cardBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     border: 1px solid red;
     width: 28vw;
     height: 20vh;
+    min-height: 20vh;
     margin: 1em;
     padding: 1em;
+}
+
+.rmButton {
+    max-width: 10em;
 }
