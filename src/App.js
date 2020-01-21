@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Form, Field } from 'react-final-form'
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography, MenuItem } from '@material-ui/core';
+import { TextField, Select } from 'material-ui-react-final-form';
 import MovieCard from './components/MovieCard/MovieCard';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   }
 
   const deleteMovie = (title) => {
-    const newMoviesArray = movies.filter(movie => movie.movieTitle !== title);
+    let newMoviesArray = movies.filter(movie => movie.movieTitle !== title);
     setMovies(newMoviesArray);
   };
 
@@ -27,27 +28,50 @@ function App() {
             <form onSubmit={handleSubmit}>
             <Typography variant="h3">Movie Locker</Typography>
             <div>
-              <label>Movie Title: </label>
-              <Field name="movieTitle" component="input" placeholder="Movie Title" />
+              <Field 
+                name="movieTitle" 
+                placeholder="The Godfather" 
+                component={TextField} 
+                label="Movie Title:" 
+                margin="normal"
+                fullWidth
+              />
             </div>
             <div>
-              <label>Release Year: </label>
-              <Field name="movieYear" component="input" placeholder="2020" />
+              <Field 
+                name="movieYear" 
+                placeholder="1972" 
+                component={TextField} 
+                label="Release Year:"
+                fullWidth
+              />
             </div>
-            <div>
-              <label>Movie Rating: </label>
-              <Field name="movieRating" component="select">
-                <option />
-                <option>G</option>
-                <option>PG</option>
-                <option>PG-13</option>
-                <option>R</option>
+            <div className="ratingDiv">
+              <p>Movie Rating: </p>
+              <Field 
+                name="movieRating" 
+                component={Select} 
+                margin="large"
+              >
+                <MenuItem value="G">
+                  G
+                </MenuItem>
+                <MenuItem value="PG">
+                  PG
+                </MenuItem>
+                <MenuItem value="PG-13">
+                  PG-13
+                </MenuItem>
+                <MenuItem value="R">
+                  R
+                </MenuItem>
               </Field>
             </div>
-
             <Button 
               variant="contained"
               type="submit"
+              margin="normal"
+              fullWidth
             >
               Submit
             </Button>
