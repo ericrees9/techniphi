@@ -8,6 +8,8 @@ import MovieCard from './components/MovieCard/MovieCard';
 function App() {
   const [movies, setMovies] = useState([]);
 
+  const hasMovies = movies.length > 0;
+
   const onSubmit = (values) => {
     setMovies(movies.concat(values));
   }
@@ -16,8 +18,6 @@ function App() {
     let newMoviesArray = movies.filter(movie => movie.movieTitle !== title);
     setMovies(newMoviesArray);
   };
-
-  const hasMovies = movies.length > 0;
   
   return (
     <div className="App">
@@ -51,8 +51,8 @@ function App() {
               <Field 
                 name="movieRating" 
                 component={Select} 
-                margin="large"
               >
+                <MenuItem value="" />
                 <MenuItem value="G">
                   G
                 </MenuItem>
@@ -81,7 +81,7 @@ function App() {
       </div>
       <div className="dataDiv">
         {hasMovies && movies.map((movie, index) =>
-          <MovieCard movieData={movie} index={index} deleteMovie={deleteMovie}/>
+          <MovieCard movieData={movie} index={index} deleteMovie={deleteMovie} key={index}/>
         )}
         {!hasMovies &&
           <Typography variant="h3">Add some movies!</Typography>

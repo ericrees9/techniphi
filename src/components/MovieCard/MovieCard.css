@@ -2,15 +2,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    border: 1px solid red;
-    width: 28vw;
-    height: 20vh;
+    justify-content: center;
+    width: 40vw;
+    max-width: 45vw;
+    height: 25vh;
     min-height: 20vh;
     margin: 1em;
     padding: 1em;
 }
 
-.rmButton {
-    max-width: 10em;
+.dataArea {
+    text-align: left;
+}
+
+.actionArea {
+    display: flex;
+    justify-content: flex-end;
 }
