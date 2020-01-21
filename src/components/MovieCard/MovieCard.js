@@ -19,6 +19,11 @@ const MovieCard = (props) => {
         setOpen(false);
     }
 
+    const handleDelete = () => {
+        props.deleteMovie(props.movieData.uuid);
+        setOpen(false);
+    }
+
     return(
         <Card className="cardBox" variant="outlined" color="secondary">
             <Container className="dataArea">
@@ -45,7 +50,7 @@ const MovieCard = (props) => {
                         <Button onClick={handleClose} color="default">
                             No
                         </Button>
-                        <Button onClick={handleClose} onClick={() => props.deleteMovie(props.movieData.uuid)} color="secondary" autoFocus>
+                        <Button onClick={handleDelete} color="secondary" autoFocus>
                             Yes
                         </Button>
                     </DialogActions>
