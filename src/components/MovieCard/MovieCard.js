@@ -9,6 +9,8 @@ const MovieCard = (props) => {
     const [favorite, setFavorite] = useState(false);
     const [open, setOpen] = useState(false);
     
+    // console.log(props)
+
     const handleOpen = () => {
         setOpen(true);
     }
@@ -18,7 +20,7 @@ const MovieCard = (props) => {
     }
 
     return(
-        <Card className="cardBox" variant="outlined">
+        <Card className="cardBox" variant="outlined" color="secondary">
             <Container className="dataArea">
                 <Typography variant="h4">{props.movieData.movieTitle}</Typography>
                 {!props.movieData.movieYear ? "" :  <Typography variant="caption">Released: {props.movieData.movieYear}</Typography> }
@@ -26,7 +28,7 @@ const MovieCard = (props) => {
             </Container>
             <Container className="actionArea">
                 <IconButton onClick={() => setFavorite(!favorite)}>
-                    <FavoriteIcon color={favorite == true ? "secondary" : "disabled"}/>
+                    <FavoriteIcon color={favorite === true ? "secondary" : "disabled"}/>
                 </IconButton>
                 <IconButton onClick={handleOpen}>
                     <DeleteIcon />
@@ -40,10 +42,10 @@ const MovieCard = (props) => {
                         Are you sure you want to delete this movie?
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="disabled">
+                        <Button onClick={handleClose} color="default">
                             No
                         </Button>
-                        <Button onClick={handleClose} onClick={() => props.deleteMovie(props.movieData.movieTitle)} color="secondary" autoFocus>
+                        <Button onClick={handleClose} onClick={() => props.deleteMovie(props.movieData.id)} color="secondary" autoFocus>
                             Yes
                         </Button>
                     </DialogActions>

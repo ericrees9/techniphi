@@ -11,11 +11,14 @@ function App() {
   const hasMovies = movies.length > 0;
 
   const onSubmit = (values) => {
-    setMovies(movies.concat(values));
+    let objID = {id: `${hasMovies ? movies.length + 1 : movies.length}`};
+    let newObj = {...values, ...objID};
+    setMovies(movies.concat(newObj));
+    console.log(movies);
   }
 
-  const deleteMovie = (title) => {
-    let newMoviesArray = movies.filter(movie => movie.movieTitle !== title);
+  const deleteMovie = (id) => {
+    let newMoviesArray = movies.filter(movie => movie.id !== id);
     setMovies(newMoviesArray);
   };
   
@@ -81,7 +84,7 @@ function App() {
       </div>
       <div className="dataDiv">
         {hasMovies && movies.map((movie, index) =>
-          <MovieCard movieData={movie} index={index} deleteMovie={deleteMovie} key={index}/>
+          <MovieCard movieData={movie} key={index} deleteMovie={deleteMovie}/>
         )}
         {!hasMovies &&
           <Typography variant="h3">Add some movies!</Typography>
