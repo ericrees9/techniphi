@@ -9,13 +9,15 @@ const MovieCard = (props) => {
     const [favorite, setFavorite] = useState(false);
     const [open, setOpen] = useState(false);
     
-    // console.log(props)
-
     const handleOpen = () => {
         setOpen(true);
     }
 
     const handleClose = () => {
+        setOpen(false);
+    }
+
+    const handleClickaway = () => {
         setOpen(false);
     }
 
@@ -25,7 +27,7 @@ const MovieCard = (props) => {
     }
 
     return(
-        <Card className="cardBox" variant="outlined" color="secondary">
+        <Card className="cardBox" variant="outlined">
             <Container className="dataArea">
                 <Typography variant="h4">{props.movieData.movieTitle}</Typography>
                 {!props.movieData.movieYear ? "" :  <Typography variant="caption">Released: {props.movieData.movieYear}</Typography> }
@@ -40,7 +42,7 @@ const MovieCard = (props) => {
                 </IconButton>
                 <Dialog
                     open={open}
-                    onClose={handleClose}
+                    onClose={handleClickaway}
                 >
                     <DialogTitle id="alert-dialog-title">{"Delete This Movie?"}</DialogTitle>
                     <DialogContent>
